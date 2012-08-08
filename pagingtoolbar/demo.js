@@ -38,13 +38,14 @@ Ext.define('MyApp.view.Viewport', {
           {
             dock: 'bottom',
             xtype: 'pagingtoolbar',
-            store: store
+            store: store,
+            pageSize: 10,
+            plugins: [ Ext.create('Ext.ux.SlidingPager') ]
           }
         ],
         xtype: 'grid',
         title: 'Grid',
         store: store,
-        plugins: [ Ext.create('Ext.ux.SlidingPager') ],
         columns: [
           {
             header: 'ID',

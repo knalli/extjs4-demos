@@ -4,6 +4,7 @@
  authors:
    - knalli
  resources:
+   - http://docs.sencha.com/ext-js/4-1/extjs-build/examples/ux/SlidingPager.js
    - http://cdn.sencha.io/try/extjs/4.1.1/resources/css/ext-all.css
  normalize_css: no
  ...
