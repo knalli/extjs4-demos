@@ -1,0 +1,8 @@
+---
+ name: Ext JS 4.1.1 Grid w/ Cell Editors and revertInvalid Problem
+ description:
+ authors:
+   - knalli
+ resources:
+ normalize_css: no
+ ...
