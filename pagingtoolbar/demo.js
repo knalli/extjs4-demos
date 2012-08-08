@@ -14,11 +14,12 @@ Ext.define('MyApp.view.Viewport', {
       {id: 8, name: 'Eight'},
       {id: 9, name: 'Nine'}
     ];
+    var pageSize = 10;
     // jsfiddle echo response
-    var ajaxResponseAsString = Ext.JSON.encode({success: true, total: 9, items: data});
+    var ajaxResponseAsString = Ext.JSON.encode({success: true, total: data.length, items: data});
     var store = Ext.create('Ext.data.Store', {
       autoLoad: true,
-      pageSize: 10,
+      pageSize: pageSize,
       proxy: {
         type: 'ajax',
         actionMethods: {read: 'POST'},
@@ -39,7 +40,7 @@ Ext.define('MyApp.view.Viewport', {
             dock: 'bottom',
             xtype: 'pagingtoolbar',
             store: store,
-            pageSize: 10,
+            pageSize: pageSize,
             plugins: [ Ext.create('Ext.ux.SlidingPager') ]
           }
         ],
