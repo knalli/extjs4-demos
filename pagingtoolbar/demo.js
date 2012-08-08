@@ -41,6 +41,7 @@ Ext.define('MyApp.view.Viewport', {
             xtype: 'pagingtoolbar',
             store: store,
             pageSize: pageSize,
+            displayInfo: true,
             plugins: [ Ext.create('Ext.ux.SlidingPager') ]
           }
         ],
