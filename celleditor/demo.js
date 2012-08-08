@@ -46,14 +46,14 @@ Ext.define('MyApp.view.Viewport', {
           {
             header: 'ID',
             dataIndex: 'id',
-            editor: {
+            editor: Ext.create('Ext.grid.CellEditor', {
               revertInvalid: false,
-              regex: /^[A-Z]+$/,
-              regexText: 'Only uppercase!',
               field: {
-                xtype: 'textfield'
+                xtype: 'textfield',
+                regex: /^[A-Z]+$/,
+                regexText: 'Only uppercase!'
               }
-            }
+            })
           },
           {
             header: 'Name',
