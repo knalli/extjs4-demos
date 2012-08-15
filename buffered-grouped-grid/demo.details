@@ -1,0 +1,9 @@
+---
+ name: Ext JS 4.1.1 Grid w/ Grouping Feature and Buffered Store
+ description: This shows a scrolling issue at the end.
+ authors:
+   - knalli
+ resources:
+   - http://cdn.sencha.io/try/extjs/4.1.1/resources/css/ext-all.css
+ normalize_css: no
+ ...
