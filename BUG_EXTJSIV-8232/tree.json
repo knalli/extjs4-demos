@@ -1,0 +1,15 @@
+[
+    {
+        "id": "~customerGroup:1~customer:2895",
+        "text": "John Doe",
+        "cls": "cls",
+        "children": [
+            {
+                "id": "~customerGroup:1~customer:2895~hostsAndServices:2895",
+                "text": "Hosts and Services",
+                "cls": "cls",
+                "leaf": true
+            }
+         ]
+    }
+]
