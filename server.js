@@ -9,6 +9,16 @@ http.createServer(function (request, response) {
   console.log('request starting...');
 
   var url = request.url;
+
+  // extjs4.2_combo_filter_store
+  var module = '/extjs4.2_combo_filter_store/combo.json';
+  if (url.substring(0, module.length) == module) {
+    response.writeHead(200, {'Content-Type': 'application/json'});
+    response.write(JSON.stringify({successProperty: 'success', success: true, items: [{id: 1, name: 'Group 1'}, {id: 2, name: 'Group 2'}]}));
+    response.end();
+    return;
+  }
+
   if (url.indexOf('?') !== -1) {
     url = url.substring(0, url.indexOf('?'));
   }
