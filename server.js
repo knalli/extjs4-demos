@@ -4,6 +4,28 @@ var http = require('http');
 var fs = require('fs');
 var path = require('path');
 
+var extractUrlParameter = function(string, paramName) {
+  var result = string.match(new RegExp(".*\\?.*" + paramName + "=(\\d+).*"));
+  if (result && result.length) {
+    return result[1];
+  }
+};
+
+var reduceDataset = function(rows, url) {
+  var offset = parseInt(extractUrlParameter(url, 'start'), 10) || 0;
+  var limit = parseInt(extractUrlParameter(url, 'limit'), 10) || -1;
+  
+  var start = offset, end = rows.length;
+
+  if (limit) {
+    end = start + limit;
+  }
+
+  console.log("start=" + start + " end=" + end);
+
+  return rows.slice(start, end);
+};
+
 http.createServer(function (request, response) {
 
   console.log('request starting...');
@@ -15,6 +37,27 @@ http.createServer(function (request, response) {
   if (url.substring(0, module.length) == module) {
     response.writeHead(200, {'Content-Type': 'application/json'});
     response.write(JSON.stringify({successProperty: 'success', success: true, items: [{id: 1, name: 'Group 1'}, {id: 2, name: 'Group 2'}]}));
+    response.end();
+    return;
+  }
+
+  // extjs4.1.883_RowExpander + Paging
+  var module = '/extjs4.2.1.883_RowExpander/grid.json';
+  if (url.substring(0, module.length) == module) {
+    response.writeHead(200, {'Content-Type': 'application/json'});
+    var rows = [], count = 1000;
+    for (var i = 1; i <= count; i++) {
+      rows.push({
+        id : i,
+        name : "Item " + i
+      });
+    }
+    response.write(JSON.stringify({
+      successProperty: 'success',
+      success: true, 
+      items: reduceDataset(rows, request.url),
+      total : rows.length
+    }));
     response.end();
     return;
   }
