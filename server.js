@@ -32,35 +32,62 @@ http.createServer(function (request, response) {
 
   var url = request.url;
 
-  // extjs4.2_combo_filter_store
-  var module = '/extjs4.2_combo_filter_store/combo.json';
-  if (url.substring(0, module.length) == module) {
-    response.writeHead(200, {'Content-Type': 'application/json'});
-    response.write(JSON.stringify({successProperty: 'success', success: true, items: [{id: 1, name: 'Group 1'}, {id: 2, name: 'Group 2'}]}));
-    response.end();
-    return;
-  }
-
-  // extjs4.1.883_RowExpander + Paging
-  var module = '/extjs4.2.1.883_RowExpander/grid.json';
-  if (url.substring(0, module.length) == module) {
-    response.writeHead(200, {'Content-Type': 'application/json'});
-    var rows = [], count = 1000;
-    for (var i = 1; i <= count; i++) {
-      rows.push({
-        id : i,
-        name : "Item " + i
-      });
+  (function(){
+    // extjs4.2_combo_filter_store
+    var module = '/extjs4.2_combo_filter_store/combo.json';
+    if (url.substring(0, module.length) == module) {
+      response.writeHead(200, {'Content-Type': 'application/json'});
+      response.write(JSON.stringify({successProperty: 'success', success: true, items: [{id: 1, name: 'Group 1'}, {id: 2, name: 'Group 2'}]}));
+      response.end();
+      return;
     }
-    response.write(JSON.stringify({
-      successProperty: 'success',
-      success: true, 
-      items: reduceDataset(rows, request.url),
-      total : rows.length
-    }));
-    response.end();
-    return;
-  }
+  }());
+
+  (function(){
+    // extjs4.1.883_RowExpander + Paging
+    var module = '/extjs4.2.1.883_RowExpander/grid.json';
+    if (url.substring(0, module.length) == module) {
+      response.writeHead(200, {'Content-Type': 'application/json'});
+      var rows = [], count = 1000;
+      for (var i = 1; i <= count; i++) {
+        rows.push({
+          id : i,
+          name : "Item " + i
+        });
+      }
+      response.write(JSON.stringify({
+        successProperty: 'success',
+        success: true, 
+        items: reduceDataset(rows, request.url),
+        total : rows.length
+      }));
+      response.end();
+      return;
+    }
+  }());
+
+  (function(){
+    // extjs4.2.1.883_MultiSelection
+    var module = '/extjs4.2.1.883_MultiSelection/grid.json';
+    if (url.substring(0, module.length) == module) {
+      response.writeHead(200, {'Content-Type': 'application/json'});
+      var rows = [], count = 1000;
+      for (var i = 1; i <= count; i++) {
+        rows.push({
+          id : i,
+          name : "Item " + i
+        });
+      }
+      response.write(JSON.stringify({
+        successProperty: 'success',
+        success: true, 
+        items: reduceDataset(rows, request.url),
+        total : rows.length
+      }));
+      response.end();
+      return;
+    }
+  }());
 
   if (url.indexOf('?') !== -1) {
     url = url.substring(0, url.indexOf('?'));
