@@ -35,16 +35,26 @@ Ext.define('App.plugin.RowExpander', {
       return;
     }
 
+    var rowIdx, rowNode, nextBd, record;
     for (id in me.recordsExpanded) {
       if (me.recordsExpanded.hasOwnProperty(id)) {
-        var rowIdx = store.findBy(function(record){
+        rowIdx = store.findBy(function(record){
           return (('' + record.get('id')) === id);
         });
 
         if (me.recordsExpanded[id] && rowIdx >= 0) {
-          var rowNode = me.view.getNode(rowIdx);
-          var nextBd = Ext.fly(rowNode).down(me.rowBodyTrSelector);
-          var record = me.view.getRecord(rowNode);
+          rowNode = me.view.getNode(rowIdx);
+          if (!rowNode) {
+            continue;
+          }
+          nextBd = Ext.fly(rowNode).down(me.rowBodyTrSelector);
+          if (!nextBd) {
+            continue;
+          }
+          record = me.view.getRecord(rowNode);
+          if (!record) {
+            continue;
+          }
 
           me.recordsExpanded[record.internalId] = true;
           me.view.fireEvent('expandbody', rowNode, record, nextBd.dom);
