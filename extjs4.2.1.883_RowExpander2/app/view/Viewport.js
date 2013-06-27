@@ -1,3 +1,16 @@
+Ext.define('Patch.Ext.grid.plugin.BufferedRenderer', {
+  override: 'Ext.grid.plugin.BufferedRenderer',
+
+  init: function(grid) {
+    this.callParent(arguments);
+  },
+
+  setBodyTop: function(){
+    this.callParent(arguments);
+    this.view.fireEvent('bufferRefreshed', this);
+  }
+});
+
 Ext.define('App.plugin.RowExpander', {
   extend : 'Ext.ux.RowExpander',
   alias: 'plugin.rowexpander2',
@@ -20,6 +33,15 @@ Ext.define('App.plugin.RowExpander', {
       me.refreshMarkup();
     }, {
       buffer : 150
+    });
+
+    grid.view.on({
+      bufferRefreshed: {
+        buffer: 200,
+        fn: function(){
+          me.refreshMarkup();
+        }
+      }
     });
   },
 
