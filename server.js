@@ -57,7 +57,30 @@ http.createServer(function (request, response) {
       }
       response.write(JSON.stringify({
         successProperty: 'success',
-        success: true, 
+        success: true,
+        items: reduceDataset(rows, request.url),
+        total : rows.length
+      }));
+      response.end();
+      return;
+    }
+  }());
+
+  (function(){
+    // extjs4.1.883_RowExpander + Paging
+    var module = '/extjs4.2.1.883_RowExpander2/grid.json';
+    if (url.substring(0, module.length) == module) {
+      response.writeHead(200, {'Content-Type': 'application/json'});
+      var rows = [], count = 1000;
+      for (var i = 1; i <= count; i++) {
+        rows.push({
+          id : i,
+          name : "Item " + i
+        });
+      }
+      response.write(JSON.stringify({
+        successProperty: 'success',
+        success: true,
         items: reduceDataset(rows, request.url),
         total : rows.length
       }));
