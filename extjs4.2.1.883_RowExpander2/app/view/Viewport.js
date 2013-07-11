@@ -38,7 +38,8 @@ Ext.define('App.plugin.RowExpander', {
     grid.view.on({
       bufferRefreshed: {
         buffer: 200,
-        fn: function(){
+        fn: function() {
+          console.debug('RowExpander.Event: bufferRefreshed');
           me.refreshMarkup();
         }
       }
@@ -46,6 +47,7 @@ Ext.define('App.plugin.RowExpander', {
   },
 
   refreshMarkup : function() {
+    console.debug('RowExpander.Method: refreshMarkup');
     var me = this, id, store = null, grid = me.getCmp();
 
     // Avoid NPE ("no view" is possible if this was called before the component has actually finished rendering)
@@ -100,12 +102,13 @@ Ext.define('App.view.Viewport', {
   extend: 'Ext.container.Viewport',
   requires : ['Ext.grid.Panel', 'Ext.data.Store', 'Ext.grid.plugin.BufferedRenderer', 'Ext.ux.RowExpander', 'Ext.XTemplate'],
   layout: 'fit',
+  gridLayoutForceUpdateEnabled: false,
 
   initComponent: function () {
     var me = this;
 
     me.store = me.buildStore();
-    me.items = me.buildItems();
+    me.items = me.buildItems();;
 
     me.callParent(arguments);
 
@@ -118,6 +121,12 @@ Ext.define('App.view.Viewport', {
     });
 
     me.queryById('grid').getView().on('expandbody', me.prepareImageMarkup, me);
+
+    me.queryById('grid').getView().on('bufferRefreshed', function(){
+      if (me.gridLayoutForceUpdateEnabled) {
+        me.queryById('grid').updateLayout();
+      }
+    });
   },
 
   buildStore : function(){
@@ -161,6 +170,7 @@ Ext.define('App.view.Viewport', {
   },
 
   buildItems : function(){
+    var me = this;
     return [ {
       layout : 'fit',
       items : [ this.buildGrid() ],
@@ -172,6 +182,14 @@ Ext.define('App.view.Viewport', {
           scope : this,
           handler : function() {
             this.store.load();
+          }
+        }, {
+          xtype : 'button',
+          enableToggle : true,
+          text : 'Call "grid.updateLayout()"',
+          toggleHandler : function(button, enabled){
+            me.gridLayoutForceUpdateEnabled = enabled;
+            console.debug('gridLayoutForceUpdateEnabled=', me.gridLayoutForceUpdateEnabled);
           }
         }]
       }],
