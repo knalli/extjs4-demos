@@ -1,0 +1,24 @@
+{
+  "name": "extjs4-demos",
+  "private": "true",
+  "version": "0.0.0",
+  "description": "extjs4-demos",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/knalli/extjs4-demos.git"
+  },
+  "author": "Jan Philipp",
+  "license": "MIT",
+  "gitHead": "18bdc2fa434112df24aced68a95aeb8355a7e2da",
+  "readmeFilename": "README.md",
+  "devDependencies": {
+    "open": "0.0.3",
+    "lorem-ipsum": "~0.1.0"
+  },
+  "dependencies": {}
+}

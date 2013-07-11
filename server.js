@@ -4,6 +4,9 @@ var http = require('http');
 var fs = require('fs');
 var path = require('path');
 
+var loremIpsum = require('lorem-ipsum');
+var open = require('open');
+
 var extractUrlParameter = function(string, paramName) {
   var result = string.match(new RegExp(".*\\?.*" + paramName + "=(\\d+).*"));
   if (result && result.length) {
@@ -75,7 +78,8 @@ http.createServer(function (request, response) {
       for (var i = 1; i <= count; i++) {
         rows.push({
           id : i,
-          name : "Item " + i
+          name : "Item " + i,
+          description : loremIpsum({units: 'words', count: 10, format: 'plain'})
         });
       }
       response.write(JSON.stringify({
@@ -155,3 +159,4 @@ http.createServer(function (request, response) {
 }).listen(8125);
 
 console.log('Server running at http://127.0.0.1:8125/');
+open("http://localhost:8125");
