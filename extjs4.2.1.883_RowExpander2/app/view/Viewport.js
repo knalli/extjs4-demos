@@ -149,6 +149,9 @@ Ext.define('App.view.Viewport', {
       }, {
           name : 'name',
           type : 'string'
+      }, {
+          name : 'description',
+          type : 'string'
       } ],
       sorters : [ {
           property : 'id',
@@ -204,16 +207,24 @@ Ext.define('App.view.Viewport', {
         header : 'Id',
         width: 100
       }, {
-        dataIndex : 'name',
-        header : 'Name',
+        dataIndex : 'description',
+        header : 'Description',
         width: 400,
         flex : 1
-      }]
+      }, {
+        dataIndex : 'name',
+        header : 'Name',
+        width: 200
+      }, {
+        dataIndex : 'name',
+        header : 'Name',
+        width: 200
+      } ]
     };
   },
 
   buildImageTpl : function(){
-    return '<div class="xdemo-img-holder"><div class="image" pre-src="static_image.png"></div></div>';
+    return '<div class="xdemo-img-holder"><div class="image" pre-src="static_image.png"></div></div><div class="xdemo-img-holder"><div class="image" pre-src="static_image.png"></div></div><div class="xdemo-img-holder"><div class="image" pre-src="static_image.png"></div></div>';
   },
 
   prepareImageMarkup : function(expander, record, el) {
