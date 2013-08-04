@@ -9,4 +9,5 @@ Please install all requirements with `npm install`.
 3. Example: `http://localhost:8125/extjs4.2.1.883_HttpStateProvider/`
 
 
-
+## License
+All examples and the corresponding backend stuff of this repository are licensed under MIT.
