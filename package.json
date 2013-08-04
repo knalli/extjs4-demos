@@ -20,5 +20,7 @@
     "open": "0.0.3",
     "lorem-ipsum": "~0.1.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "express": "~3.3.4"
+  }
 }
