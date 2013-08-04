@@ -71,7 +71,19 @@ module.exports = function (app, prefix) {
   var data = {};
 
   app.get(prefix + '/cookies.json', function (req, res) {
-    res.json(200, data);
+    var records = [];
+    for (var name in data) {
+      if (data.hasOwnProperty(name)) {
+        records.push({
+          name: name,
+          value: data[name]
+        });
+      }
+    }
+    res.json(200, {
+      success: true,
+      data: records
+    });
   });
 
   app.post(prefix + '/cookies.json', function (req, res) {

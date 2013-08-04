@@ -15,6 +15,8 @@ Ext.define('App.view.Viewport', {
 
   buildStore : function(){
     return Ext.create('Ext.data.Store', {
+      stateful: true,
+      stateId: 'store',
       autoLoad : true,
       autoSave : false,
       buffered : true,
@@ -42,11 +44,31 @@ Ext.define('App.view.Viewport', {
       }, {
           name : 'name',
           type : 'string'
-      } ],
-      sorters : [ {
-          property : 'id',
-          direction : 'ASC'
-      }]
+      }, {
+          name : 'name1',
+          mapping: 'name',
+          type : 'string'
+      }, {
+          name : 'name2',
+          mapping: 'name',
+          type : 'string'
+      }, {
+          name : 'name3',
+          mapping: 'name',
+          type : 'string'
+      }, {
+          name : 'name4',
+          mapping: 'name',
+          type : 'string'
+      }, {
+          name : 'name5',
+          mapping: 'name',
+          type : 'string'
+      }, {
+          name : 'name6',
+          mapping: 'name',
+          type : 'string'
+      } ]
     });
   },
 
@@ -99,31 +121,34 @@ Ext.define('App.view.Viewport', {
         dataIndex : 'id',
         header : 'Id',
         width: 100,
+        stateful: true,
         lockable: true,
         locked: true
       }, {
-        dataIndex : 'name',
-        header : 'Name',
+        dataIndex : 'name1',
+        header : 'Name1',
+        stateful: true,
         width: 400
       }, {
-        dataIndex : 'name',
-        header : 'Name',
+        dataIndex : 'name2',
+        header : 'Name2',
+        stateful: true,
         width: 400
       }, {
-        dataIndex : 'name',
-        header : 'Name',
+        dataIndex : 'name3',
+        header : 'Name3',
         width: 400
       }, {
-        dataIndex : 'name',
-        header : 'Name',
+        dataIndex : 'name4',
+        header : 'Name4',
         width: 400
       }, {
-        dataIndex : 'name',
-        header : 'Name',
+        dataIndex : 'name5',
+        header : 'Name5',
         width: 400
       }, {
-        dataIndex : 'name',
-        header : 'Name',
+        dataIndex : 'name6',
+        header : 'Name6',
         width: 400
       } ]
     };
