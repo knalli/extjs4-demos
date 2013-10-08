@@ -26,4 +26,5 @@ module.exports = function (app) {
   require('./extjs4.2.1.883_RowExpander/server_routes')(app);
   require('./extjs4.2.1.883_RowExpander2/server_routes')(app);
   require('./extjs4.2.1.883_HttpStateProvider/server_routes')(app);
+  require('./extjs4.2.2.1144_GroupGridView/server_routes')(app);
 };
